@@ -166,12 +166,12 @@
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 180px;
+            width: 200px;
         }
 
         .client-card img {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 0.5rem;
@@ -309,10 +309,11 @@
 </section>
 
 
-        <h2>قائمة المشروبات</h2>
-        <div id="menuItems">
-            <p>جارٍ تحميل المنيو...</p>
-        </div>
+    <h2>قائمة المشروبات</h2>
+    <div id="menuItems">
+        <p>جارٍ تحميل المنيو...</p>
+    </div>
+
 
     <section class="gallery">
         <h2 class="gallery-title">صور القهوة</h2>
@@ -340,6 +341,10 @@
                     <img src="image/shabara.jpg" alt="عميل 3">
                     <strong>محمد شبارة</strong>
                 </div>
+                <div class="client-card">
+                    <img src="image/salamony.jpg" alt="عميل 3">
+                    <strong>احمد السلاموني</strong>
+                </div>
             </div>
         </section>
 
@@ -362,32 +367,49 @@
 
     <script>
         function loadMenuFromStorage() {
-            const storedMenu = localStorage.getItem('sunbariMenu');
-            return storedMenu ? JSON.parse(storedMenu) : [];
-        }
-
-        function renderMenu() {
-            const menu = loadMenuFromStorage();
-            const container = document.getElementById('menuItems');
-            container.innerHTML = '';
-
-            if (menu.length === 0) {
-                container.innerHTML = '<p>لا توجد عناصر في القائمة حالياً.</p>';
-                return;
+                const storedMenu = localStorage.getItem('sunbariMenu');
+                return storedMenu ? JSON.parse(storedMenu) : [];
             }
 
-            menu.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'menu-item';
-                div.innerHTML = `
-          <h3>${item.name}</h3>
-          <p>${item.description}</p>
-        `;
-                container.appendChild(div);
-            });
-        }
+            function renderMenu() {
+                const menu = loadMenuFromStorage();
+                const container = document.getElementById('menuItems');
+                container.innerHTML = '';
 
-        renderMenu();
+                // إضافة المشروبات الاحتياطية إذا كانت القائمة فارغة
+                if (menu.length === 2) {
+                    container.innerHTML = '<p>لا توجد عناصر في القائمة حالياً.</p>';
+                }
+
+                // عرض المشروبات المحفوظة في localStorage
+                menu.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'menu-item';
+                    div.innerHTML = `
+            <h3>${item.name}</h3>
+        `;
+                    container.appendChild(div);
+                });
+
+                // إضافة مشروبات احتياطية "الشاي" و "القهوة"
+                const defaultItems = [
+                    { name: 'شاي' },
+                    { name: 'قهوة' }
+                ];
+
+                defaultItems.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'menu-item';
+                    div.innerHTML = `
+            <h3>${item.name}</h3>
+        `;
+                    container.appendChild(div);
+                });
+            }
+
+            // استدعاء الدالة لعرض القائمة
+            renderMenu();
+
 
         // دالة لعرض الفيديو عند الضغط على الزر
             function showShishaVideo() {
