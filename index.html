@@ -237,6 +237,46 @@
   }
 }
 
+/* تحسين تنسيق سيكشن "صاحب القهوة" */
+.owner-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    text-align: center;
+    background-color: #fff8e1;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.owner-title {
+    font-size: 2rem;
+    color: #6e4b3a;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.owner-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.owner-img {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* لتحسين التنسيق على الأجهزة الصغيرة */
+@media screen and (max-width: 768px) {
+    .owner-img {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
     </style>
 </head>
 
@@ -261,6 +301,12 @@
                 </video>
             </div>
         </section>
+<section class="owner-section">
+    <h2 class="owner-title">صاحب القهوة</h2>
+    <div class="owner-content">
+        <img src="image/sunibari.jpg" alt="صاحب القهوة" class="owner-img">
+    </div>
+</section>
 
 
         <h2>قائمة المشروبات</h2>
@@ -271,10 +317,9 @@
     <section class="gallery">
         <h2 class="gallery-title">صور القهوة</h2>
         <div class="gallery-container">
-            <img src="images/coffee1.jpg" alt="قهوة" class="gallery-image">
-            <img src="images/coffee2.jpg" alt="مشروب" class="gallery-image">
-            <img src="images/coffee3.jpg" alt="مشروب 2" class="gallery-image">
-            <img src="images/coffee4.jpg" alt="جو القهوة" class="gallery-image">
+            <img src="image/image1.jpg" alt="قهوة" class="gallery-image">
+            <img src="image/image2.jpg" alt="مشروب" class="gallery-image">
+           
         </div>
     </section>
 
@@ -284,15 +329,15 @@
             <h3>عملاؤنا المميزون</h3>
             <div class="client-list">
                 <div class="client-card">
-                    <img src="clients/client1.jpg" alt="عميل 1">
+                    <img src="image/ghazal.jpg" alt="عميل 1">
                     <strong>احمد غزال</strong>
                 </div>
                 <div class="client-card">
-                    <img src="clients/client2.jpg" alt="عميل 2">
+                    <img src="image/kamal.jpg" alt="عميل 2">
                     <strong>كمال الملكي</strong>
                 </div>
                 <div class="client-card">
-                    <img src="clients/client3.jpg" alt="عميل 3">
+                    <img src="image/shabara.jpg" alt="عميل 3">
                     <strong>محمد شبارة</strong>
                 </div>
             </div>
