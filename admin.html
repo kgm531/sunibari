@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - قهوة السنباري</title>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f9f3ef;
+            padding: 2rem;
+            color: #333;
+        }
+
+        h1 {
+            color: #6e4b3a;
+            text-align: center;
+        }
+
+        form input,
+        form textarea,
+        form button {
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #6e4b3a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button.reset {
+            background-color: #b22222;
+        }
+
+        .menu-item {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #auth {
+            max-width: 400px;
+            margin: 100px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="auth">
+        <h2>أدخل كلمة المرور للوصول إلى لوحة التحكم</h2>
+        <input type="password" id="passwordInput" placeholder="كلمة المرور">
+        <button onclick="checkPassword()">دخول</button>
+        <p id="errorMsg" style="color:red;"></p>
+    </div>
+
+    <div id="adminPanel" style="display:none;">
+        <h1>لوحة التحكم - قهوة السنباري</h1>
+
+        <form onsubmit="addMenuItem(event)">
+            <input type="text" id="itemName" placeholder="اسم المشروب" required>
+            <input type="text" id="itemDescription" placeholder="الوصف">
+            <button type="submit">إضافة إلى المنيو</button>
+        </form>
+
+        <button onclick="resetMenu()" class="reset">إعادة تعيين القائمة بالكامل</button>
+
+        <hr>
+        <div id="menuItems"></div>
+    </div>
+
+    <script>
+        const correctPassword = "sunbari2024";
+
+        function checkPassword() {
+            const input = document.getElementById("passwordInput").value;
+            if (input === correctPassword) {
+                document.getElementById("auth").style.display = "none";
+                document.getElementById("adminPanel").style.display = "block";
+            } else {
+                document.getElementById("errorMsg").innerText = "كلمة المرور غير صحيحة";
+            }
+        }
+
+        let menu = [];
+
+        function loadMenuFromStorage() {
+            const storedMenu = localStorage.getItem('sunbariMenu');
+            if (storedMenu) {
+                menu = JSON.parse(storedMenu);
+            }
+        }
+
+        function saveMenuToStorage() {
+            localStorage.setItem('sunbariMenu', JSON.stringify(menu));
+        }
+
+        function renderMenu() {
+            const container = document.getElementById('menuItems');
+            container.innerHTML = '';
+            menu.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'menu-item';
+                div.innerHTML = `
+          <button class="delete-btn" onclick="deleteMenuItem(${index})">حذف</button>
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>`;
+                container.appendChild(div);
+            });
+        }
+
+        function addMenuItem(e) {
+            e.preventDefault();
+            const name = document.getElementById('itemName').value;
+            const desc = document.getElementById('itemDescription').value;
+            menu.push({ name, description: desc });
+            saveMenuToStorage();
+            renderMenu();
+            e.target.reset();
+        }
+
+        function deleteMenuItem(index) {
+            if (confirm("هل أنت متأكد من حذف هذا العنصر؟")) {
+                menu.splice(index, 1);
+                saveMenuToStorage();
+                renderMenu();
+            }
+        }
+
+        function resetMenu() {
+            if (confirm("هل تريد إعادة تعيين القائمة بالكامل؟")) {
+                menu = [];
+                saveMenuToStorage();
+                renderMenu();
+            }
+        }
+
+        loadMenuFromStorage();
+    </script>
+</body>
+
+</html>

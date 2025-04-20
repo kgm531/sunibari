@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>قهوة السنباري</title>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f3ef;
+            color: #3e2c1c;
+        }
+
+        header {
+            background-color: #6e4b3a;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #8b5e3c;
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .menu-item {
+            background-color: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item h3 {
+            margin: 0 0 0.5rem 0;
+        }
+
+        .footer {
+            background-color: #6e4b3a;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* تحسين تنسيق سيكشن الفيديو */
+.video-section {
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  background-color: #f3e8d3;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.video-container {
+  position: relative;
+  max-width: auto;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.video {
+  width: auto;
+  height: auto;
+  border-radius: 15px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.video:hover {
+  transform: scale(1.05); /* تأثير التكبير عند المرور */
+}
+
+@media screen and (max-width: 768px) {
+    .video-container {
+        padding-top: 99.25%; /* نسبة العرض إلى الارتفاع 16:9 للفيديو */
+        position: relative;
+    }
+
+    .video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+        /* تحسين التنسيق لقسم صور القهوة */
+.gallery {
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  background-color: #f3e8d3;
+  border-radius: 10px;
+}
+
+.gallery-title {
+  font-size: 2rem;
+  color: #6e4b3a;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-image {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-image:hover {
+  transform: scale(1.05);
+}
+
+        .clients {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #eee2d0;
+            border-radius: 10px;
+        }
+
+        .clients h3 {
+            text-align: center;
+        }
+
+        .client-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .client-card {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 180px;
+        }
+
+        .client-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 0.5rem;
+        }
+
+        /* تحسين تنسيق سيكشن المعسل */
+.shisha-section {
+  margin-top: 3rem;
+  padding: 2rem;
+  text-align: center;
+  background-color: #fff8e1;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.shisha-title {
+  font-size: 2rem;
+  color: #6e4b3a;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.shisha-btn {
+  padding: 1rem 2rem;
+  background-color: #6e4b3a;
+  color: #fff;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.shisha-btn:hover {
+  background-color: #a5673f;
+  transform: scale(1.1);
+}
+
+.shisha-btn:active {
+  background-color: #4e3629;
+}
+
+.video-containers {
+  display: none;
+  margin-top: 2rem;
+  max-width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.shisha-video {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+/* لعرض الفيديو بشكل صحيح */
+@media screen and (max-width: 768px) {
+  .shisha-btn {
+    width: 80%;
+    font-size: 1rem;
+  }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>قهوة السنباري</h1>
+        <p>أهلاً بك في أجواء القهوة المصرية الأصيلة</p>
+    </header>
+
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="admin.html">لوحة التحكم</a>
+    </nav>
+
+    <div class="container">
+        <section class="video-section">
+            <div class="video-container">
+                <video autoplay muted loop poster="poster.jpg" class="video">
+                    <source src="doc_2025-04-20_05-11-34.mp4" type="video/mp4">
+                    المتصفح لا يدعم تشغيل الفيديو.
+                </video>
+            </div>
+        </section>
+
+
+        <h2>قائمة المشروبات</h2>
+        <div id="menuItems">
+            <p>جارٍ تحميل المنيو...</p>
+        </div>
+
+    <section class="gallery">
+        <h2 class="gallery-title">صور القهوة</h2>
+        <div class="gallery-container">
+            <img src="images/coffee1.jpg" alt="قهوة" class="gallery-image">
+            <img src="images/coffee2.jpg" alt="مشروب" class="gallery-image">
+            <img src="images/coffee3.jpg" alt="مشروب 2" class="gallery-image">
+            <img src="images/coffee4.jpg" alt="جو القهوة" class="gallery-image">
+        </div>
+    </section>
+
+
+
+        <section class="clients">
+            <h3>عملاؤنا المميزون</h3>
+            <div class="client-list">
+                <div class="client-card">
+                    <img src="clients/client1.jpg" alt="عميل 1">
+                    <strong>احمد غزال</strong>
+                </div>
+                <div class="client-card">
+                    <img src="clients/client2.jpg" alt="عميل 2">
+                    <strong>كمال الملكي</strong>
+                </div>
+                <div class="client-card">
+                    <img src="clients/client3.jpg" alt="عميل 3">
+                    <strong>محمد شبارة</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="shisha-section">
+            <h2 class="shisha-title">اضغط لرؤية المعسل الخاص بنا</h2>
+            <button class="shisha-btn" onclick="showShishaVideo()">شاهد الفيديو</button>
+            <div class="video-containers" id="video-containers">
+                <video autoplay muted loop class="shisha-video">
+                    <source src="video_2025-04-20_05-11-46.mp4" type="video/mp4">
+                    المتصفح لا يدعم تشغيل الفيديو.
+                </video>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="footer">
+        &copy; جميع الحقوق محفوظة لقهوة السنباري و kgm
+        </div>
+
+    <script>
+        function loadMenuFromStorage() {
+            const storedMenu = localStorage.getItem('sunbariMenu');
+            return storedMenu ? JSON.parse(storedMenu) : [];
+        }
+
+        function renderMenu() {
+            const menu = loadMenuFromStorage();
+            const container = document.getElementById('menuItems');
+            container.innerHTML = '';
+
+            if (menu.length === 0) {
+                container.innerHTML = '<p>لا توجد عناصر في القائمة حالياً.</p>';
+                return;
+            }
+
+            menu.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'menu-item';
+                div.innerHTML = `
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+        `;
+                container.appendChild(div);
+            });
+        }
+
+        renderMenu();
+
+        // دالة لعرض الفيديو عند الضغط على الزر
+            function showShishaVideo() {
+                const videoContainer = document.getElementById("video-containers");
+                videoContainer.style.display = "block"; // إظهار الفيديو
+            }
+
+    </script>
+
+</body>
+
+</html>
